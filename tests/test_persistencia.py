@@ -7,7 +7,15 @@ def test_write_file_creates_file(tmp_path):
     write_file(file)
     assert file.exists()
 
-
+def test_write_file_overwrites_existing_content(tmp_path):
+    # Testea que write_file sobrescribe el contenido previo del archivo
+    file = tmp_path / "README.md"
+    file.write_text("Contenido antiguo", encoding="utf-8")
+    write_file(file)
+    content = file.read_text(encoding="utf-8")   
+    # El contenido antiguo no debe existir
+    assert "Contenido antiguo" not in content
+    assert "texto inicial" in content
 
 
 def test_read_file_returns_content(tmp_path):
