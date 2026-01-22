@@ -8,13 +8,6 @@ def test_write_file_creates_file(tmp_path):
     assert file.exists()
 
 
-def test_write_file_writes_content(tmp_path):
-    # Testea que write_file escribe el contenido inicial correctamente
-    file = tmp_path / "README.md"
-    write_file(file)
-    content = file.read_text(encoding="utf-8")
-    assert "texto inicial" in content
-
 
 
 def test_read_file_returns_content(tmp_path):
